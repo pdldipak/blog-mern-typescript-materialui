@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ToggleColorMode from './utility/DarkTheme';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 ReactDOM.render(
   <>
     <ToggleColorMode>
+      <CssBaseline />
       <App />
     </ToggleColorMode>
   </>,

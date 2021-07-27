@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, Box } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import SocialMediaIcons from '../icons/SocialMediaIcons';
 
 type Props = {
   anchor?: 'top' | 'right' | 'bottom' | 'left';
@@ -16,7 +11,7 @@ type Props = {
 const DrawerComponent: React.FC<Props> = () => {
   const [openDrawer, setOpenDrawer] = React.useState<boolean>(true);
   return (
-    <>
+    <Box p={2}>
       <Drawer
         anchor="right"
         open={openDrawer}
@@ -31,24 +26,19 @@ const DrawerComponent: React.FC<Props> = () => {
           }}
         >
           <ListItem divider button>
-            <ListItemIcon>
-              <ListItemText>Home</ListItemText>
-            </ListItemIcon>
+            <ListItemText>Home</ListItemText>
           </ListItem>
           <ListItem divider button>
-            <ListItemIcon>
-              <ListItemText>Profile</ListItemText>
-            </ListItemIcon>
+            <ListItemText>Profile</ListItemText>
           </ListItem>
           <ListItem divider button>
-            <ListItemIcon>
-              <ListItemText>About</ListItemText>
-            </ListItemIcon>
+            <ListItemText>About</ListItemText>
           </ListItem>
           <ListItem divider button>
-            <ListItemIcon>
-              <ListItemText>Setting</ListItemText>
-            </ListItemIcon>
+            <ListItemText>Setting</ListItemText>
+          </ListItem>
+          <ListItem divider button>
+            <SocialMediaIcons />
           </ListItem>
         </List>
       </Drawer>
@@ -62,7 +52,7 @@ const DrawerComponent: React.FC<Props> = () => {
       >
         <MenuIcon />
       </IconButton>
-    </>
+    </Box>
   );
 };
 

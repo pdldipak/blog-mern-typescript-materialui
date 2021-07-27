@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
 
-export const NavBar = styled(AppBar)`
-  background-color: red;
+export const Header = styled(Box)`
+  position: sticky;
+  top: 0;
 `;

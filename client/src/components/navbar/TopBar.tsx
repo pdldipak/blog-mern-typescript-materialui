@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -8,14 +7,18 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Stack from '@material-ui/core/Stack';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { NavBar, ToggleBar } from './Styled.TopBar';
+import { NavBar, TopNav } from './styled';
 import IconButton from '@material-ui/core/IconButton';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import { ColorModeContext } from '../../utility/DarkTheme';
 import DrawerComponent from '../drawer/DrawerComponent';
+import { Box } from '@material-ui/core';
+import SocialMediaIcons from '../icons/SocialMediaIcons';
+import SearchAppBar from '../search/Searcj';
 
 const TopBar: React.FC = () => {
   const colorMode = React.useContext(ColorModeContext);
@@ -39,8 +42,8 @@ const TopBar: React.FC = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Paper sx={{ flexGrow: 1 }}>
-      <ToggleBar>
+    <Box>
+      <TopNav variant="dense">
         <FormGroup>
           <FormControlLabel
             control={
@@ -53,6 +56,8 @@ const TopBar: React.FC = () => {
             label={auth ? 'Logout' : 'Login'}
           />
         </FormGroup>
+
+        <SearchAppBar />
         <IconButton onClick={colorMode.toggleColorMode} color="inherit">
           {theme.palette.mode === 'dark' ? (
             <Brightness7Icon />
@@ -60,29 +65,37 @@ const TopBar: React.FC = () => {
             <Brightness4Icon />
           )}
         </IconButton>
-      </ToggleBar>
-      <NavBar position="static">
-        <Toolbar>
-          {isMatch ? (
-            <DrawerComponent />
-          ) : (
+      </TopNav>
+      <NavBar position="static" elevation={0}>
+        {isMatch ? (
+          <DrawerComponent />
+        ) : (
+          <Toolbar
+            component="nav"
+            sx={{ justifyContent: 'space-around', overflowX: 'auto', p: 2 }}
+          >
             <>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Stack>
+                <SocialMediaIcons />
+              </Stack>
+
+              <Typography variant="h6" component="div">
                 Home
               </Typography>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Typography variant="h6" component="div">
                 Profile
               </Typography>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Typography variant="h6" component="div">
                 About
               </Typography>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Typography variant="h6" component="div">
                 Setting
               </Typography>
+
               {auth && (
-                <div>
+                <Stack>
                   <IconButton
-                    size="large"
+                    size="small"
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
@@ -109,13 +122,13 @@ const TopBar: React.FC = () => {
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                   </Menu>
-                </div>
+                </Stack>
               )}
             </>
-          )}
-        </Toolbar>
+          </Toolbar>
+        )}
       </NavBar>
-    </Paper>
+    </Box>
   );
 };
 

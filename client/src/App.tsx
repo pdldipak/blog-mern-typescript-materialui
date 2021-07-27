@@ -1,23 +1,19 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import TopBar from './components/header/TopBar';
-import Extra from './extra/Extra';
+import { Box } from '@material-ui/core';
+import TopBar from './components/navbar/TopBar';
+import { Header } from './Styled.App';
+import Home from './screens/home/Home';
 
 const App: React.FC = () => {
   return (
-    <Paper
-      sx={{
-        width: '100%',
-        height: '100vh',
-        bgcolor: 'background.default',
-        color: 'text.primary',
-      }}
-    >
-      <TopBar />
-      <div>
-        <Extra />
-      </div>
-    </Paper>
+    <Box>
+      <Header>
+        <TopBar />
+      </Header>
+      <main>
+        <Home />
+      </main>
+    </Box>
   );
 };
 
