@@ -18,7 +18,7 @@ import { ColorModeContext } from '../../utility/DarkTheme';
 import DrawerComponent from '../drawer/DrawerComponent';
 import { Box } from '@material-ui/core';
 import SocialMediaIcons from '../icons/SocialMediaIcons';
-import SearchAppBar from '../search/Searcj';
+import SearchAppBar from '../search/Search';
 
 const TopBar: React.FC = () => {
   const colorMode = React.useContext(ColorModeContext);

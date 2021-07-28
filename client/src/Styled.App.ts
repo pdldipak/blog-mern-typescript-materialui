@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import Box from '@material-ui/core/Box';
+import { styled } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
-export const Header = styled(Box)`
+export const Header = styled(Paper)`
   position: sticky;
   top: 0;
+  z-index: 999;
 `;
