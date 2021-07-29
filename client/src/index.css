@@ -8,11 +8,6 @@ body {
   font-size: 1.2rem;
 }
 
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
 
 a:link {
   text-decoration: none;

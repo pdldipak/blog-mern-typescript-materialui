@@ -13,20 +13,13 @@ import { red } from '@material-ui/core/colors';
 import { styled } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { Image } from '../../utility/utilityStyled';
 
 const SinglePost: React.FC = () => {
   return (
-    <Paper sx={{ marginTop: '20px', borderRadius: '5px', marginRight: '20px' }}>
+    <Paper sx={{ marginTop: '62px', borderRadius: '5px', marginRight: '20px' }}>
       <Box>
-        <img
-          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-          alt=""
-          style={{
-            width: '100%',
-            height: '380px',
-            objectFit: 'cover',
-          }}
-        />
+        <Image src="https://source.unsplash.com/random" alt="" />
       </Box>
 
       <Grid container p={2}>

@@ -1,18 +1,16 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { Typography, Box, Stack } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import image from '../../assets/images/header01.jpeg';
 
 const Header: React.FC = () => {
   return (
-    <BlogTitleStack>
-      <TextBox>
+    <Box sx={{ height: '600px' }}>
+      <BlogImage>
         <Text>Dipak</Text>
         <Text>Blog</Text>
-      </TextBox>
-    </BlogTitleStack>
+      </BlogImage>
+    </Box>
   );
 };
 
@@ -28,20 +26,16 @@ const Text = styled(Typography)(({ theme }) => ({
   fontStyle: 'italic',
 }));
 
-const BlogTitleStack = styled(Paper)({
+const BlogImage = styled(Stack)({
   mb: 4,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
   backgroundImage: `url(${image})`,
+  height: '100%',
   width: '100%',
-  height: '450px',
-});
-
-const TextBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  margin: 'auto',
 });

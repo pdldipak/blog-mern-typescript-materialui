@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import { styled } from '@material-ui/core/styles';
 import { postTypes } from '../../types/type';
+import { Image } from '../../utility/utilityStyled';
 
 type Props = {
   post: postTypes;
@@ -14,17 +15,8 @@ type Props = {
 const Post: React.FC<Props> = ({ post }) => {
   return (
     <Paper sx={{ marginTop: '62px', borderRadius: '5px', marginRight: '20px' }}>
-      <Box>
-        <img
-          className="postImg"
-          src={post.image}
-          alt=""
-          style={{
-            width: '100%',
-            height: '280px',
-            objectFit: 'cover',
-          }}
-        />
+      <Box sx={{ height: '400px' }}>
+        <Image className="postImg" src={post.image} alt="" />
       </Box>
       <Grid container p={2}>
         <Grid item>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Container, Paper } from '@material-ui/core';
 import TopBar from './components/navbar/TopBar';
 import { Header } from './Styled.App';
-import SingleBlog from './screens/singleBlog/SingleBlog';
-// import Home from './screens/home/Home';
+import WritePage from './screens/write/WritePage';
+// import SingleBlogPage from './screens/singleBlog/SingleBlogPage';
+// import HomePage from './screens/home/HomePage';
 
 const App: React.FC = () => {
   return (
@@ -13,8 +14,11 @@ const App: React.FC = () => {
       </Header>
 
       <main>
-        {/* <Home /> */}
-        <SingleBlog />
+        <Paper elevation={0}>
+          {/* <HomePage /> */}
+          {/* <SingleBlogPage /> */}
+          <WritePage />
+        </Paper>
       </main>
     </Container>
   );

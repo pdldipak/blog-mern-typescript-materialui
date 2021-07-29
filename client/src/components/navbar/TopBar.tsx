@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Stack from '@material-ui/core/Stack';
+import Avatar from '@material-ui/core/Avatar';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { NavBar, TopNav } from './styled';
@@ -44,6 +44,16 @@ const TopBar: React.FC = () => {
   return (
     <Box>
       <TopNav variant="dense">
+        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
+          {theme.palette.mode === 'dark' ? (
+            <Brightness7Icon />
+          ) : (
+            <Brightness4Icon />
+          )}
+        </IconButton>
+
+        <SearchAppBar />
+
         <FormGroup>
           <FormControlLabel
             control={
@@ -56,15 +66,6 @@ const TopBar: React.FC = () => {
             label={auth ? 'Logout' : 'Login'}
           />
         </FormGroup>
-
-        <SearchAppBar />
-        <IconButton onClick={colorMode.toggleColorMode} color="inherit">
-          {theme.palette.mode === 'dark' ? (
-            <Brightness7Icon />
-          ) : (
-            <Brightness4Icon />
-          )}
-        </IconButton>
       </TopNav>
       <NavBar position="static" elevation={0}>
         {isMatch ? (
@@ -83,13 +84,13 @@ const TopBar: React.FC = () => {
                 Home
               </Typography>
               <Typography variant="h6" component="div">
-                Profile
-              </Typography>
-              <Typography variant="h6" component="div">
                 About
               </Typography>
               <Typography variant="h6" component="div">
-                Setting
+                Write
+              </Typography>
+              <Typography variant="h6" component="div">
+                Contact
               </Typography>
 
               {auth && (
@@ -102,7 +103,11 @@ const TopBar: React.FC = () => {
                     onClick={handleMenu}
                     color="inherit"
                   >
-                    <AccountCircle />
+                    <Avatar
+                      alt="Dipak Poudel"
+                      src="/resume_pic.jpg"
+                      sx={{ width: 30, height: 30 }}
+                    />
                   </IconButton>
                   <Menu
                     id="menu-appbar"

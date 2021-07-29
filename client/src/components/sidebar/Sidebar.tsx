@@ -1,25 +1,22 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
 import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import { Image } from '../../utility/utilityStyled';
 
 const Sidebar: React.FC = () => {
   return (
-    <Box component="div" sx={{ margin: 0 }}>
+    <Paper elevation={0} sx={{ marginTop: '62px' }}>
       <Typography variant="h6" align="center" gutterBottom>
         <hr />
         ABOUT ME
         <hr />
       </Typography>
-      <img
-        src="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandblog/demo/wp-content/uploads/2015/11/aboutme.jpg"
-        alt=""
-        style={{ width: '100%' }}
-      />
+      <Image src="/resume_pic.jpg" alt="" />
       <Typography>
         Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit amet
         ex esse.Sunt eu ut nostrud id quis proident.
@@ -73,23 +70,8 @@ const Sidebar: React.FC = () => {
           </Stack>
         </Link>
       ))}
-    </Box>
+    </Paper>
   );
 };
 
 export default Sidebar;
-
-// .sidebarList {
-//   list-style-type: none;
-//   margin-bottom: 30px;
-// }
-
-// .sidebarListItem {
-//   display: inline-block;
-//   width: 50%;
-//   margin-top: 15px;
-//   cursor: pointer;
-
-// display: flex;
-// flex-direction: column;
-// align-items: center;

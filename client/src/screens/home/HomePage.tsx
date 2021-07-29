@@ -1,15 +1,17 @@
 import React from 'react';
 import { Grid, Box } from '@material-ui/core';
+import Header from '../../components/header/Header';
+import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
-import SinglePost from '../../components/singlePost/SinglePost';
 
-const SingleBlog: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <>
+      <Header />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={9}>
-            <SinglePost />
+            <Posts />
           </Grid>
           <Grid item xs={12} md={3}>
             <Sidebar />
@@ -20,4 +22,4 @@ const SingleBlog: React.FC = () => {
   );
 };
 
-export default SingleBlog;
+export default HomePage;

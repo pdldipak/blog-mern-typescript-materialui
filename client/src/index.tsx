@@ -8,8 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 ReactDOM.render(
   <>
+    <CssBaseline />
     <ToggleColorMode>
-      <CssBaseline />
       <App />
     </ToggleColorMode>
   </>,
