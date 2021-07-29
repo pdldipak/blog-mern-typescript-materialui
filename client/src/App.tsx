@@ -1,14 +1,17 @@
 import React from 'react';
-import { Container, Paper } from '@material-ui/core';
+import {Paper } from '@material-ui/core';
 import TopBar from './components/navbar/TopBar';
-import { Header } from './Styled.App';
-import WritePage from './screens/write/WritePage';
+import { Header, MainContainer } from './Styled.App';
+//import Settings from './screens/settings/Settings';
+//import SignIn from './screens/login/Login';
+import Register from './screens/register/Register';
+// import WritePage from './screens/write/WritePage';
 // import SingleBlogPage from './screens/singleBlog/SingleBlogPage';
 // import HomePage from './screens/home/HomePage';
 
 const App: React.FC = () => {
   return (
-    <Container maxWidth="xl">
+    <MainContainer>
       <Header elevation={0}>
         <TopBar />
       </Header>
@@ -17,10 +20,13 @@ const App: React.FC = () => {
         <Paper elevation={0}>
           {/* <HomePage /> */}
           {/* <SingleBlogPage /> */}
-          <WritePage />
+          {/* <WritePage /> */}
+          {/* <Settings /> */}
+          {/* <SignIn /> */}
+          <Register />
         </Paper>
       </main>
-    </Container>
+    </MainContainer>
   );
 };
 

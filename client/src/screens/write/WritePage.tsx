@@ -41,12 +41,12 @@ const WritePage: React.FC = () => {
           />
         </Box>
         <Button
-          size="medium"
+          size="large"
           type="submit"
           color="success"
           variant="contained"
           endIcon={<SaveIcon />}
-          sx={{ padding: '24px' }}
+          sx={{ width: '220px', alignSelf: 'center' }}
         >
           Publish
         </Button>
