@@ -1,30 +1,29 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
+import { NavLink } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Stack from '@material-ui/core/Stack';
+import Avatar from '@material-ui/core/Avatar';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { NavBar, ToggleBar } from './Styled.TopBar';
-import IconButton from '@material-ui/core/IconButton';
+import { NavBar, TopNav } from './styled';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import { ColorModeContext } from '../../utility/DarkTheme';
 import DrawerComponent from '../drawer/DrawerComponent';
+import { Box } from '@material-ui/core';
+import SocialMediaIcons from '../icons/SocialMediaIcons';
+import SearchAppBar from '../search/Search';
+import LockIcon from '@material-ui/icons/Lock';
 
 const TopBar: React.FC = () => {
+  const auth = true;
   const colorMode = React.useContext(ColorModeContext);
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -39,20 +38,8 @@ const TopBar: React.FC = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Paper sx={{ flexGrow: 1 }}>
-      <ToggleBar>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={auth}
-                onChange={handleChange}
-                aria-label="login switch"
-              />
-            }
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup>
+    <Box>
+      <TopNav variant="dense">
         <IconButton onClick={colorMode.toggleColorMode} color="inherit">
           {theme.palette.mode === 'dark' ? (
             <Brightness7Icon />
@@ -60,36 +47,54 @@ const TopBar: React.FC = () => {
             <Brightness4Icon />
           )}
         </IconButton>
-      </ToggleBar>
-      <NavBar position="static">
-        <Toolbar>
-          {isMatch ? (
-            <DrawerComponent />
-          ) : (
+        <SearchAppBar />
+
+        <IconButton>
+          <Badge>
+            <NavLink to="/login">
+              <LockIcon />
+            </NavLink>
+          </Badge>
+        </IconButton>
+      </TopNav>
+      <NavBar position="static" elevation={0}>
+        {isMatch ? (
+          <DrawerComponent />
+        ) : (
+          <Toolbar
+            component="nav"
+            sx={{ justifyContent: 'space-around', overflowX: 'auto', p: 2 }}
+          >
             <>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Home
+              <Stack>
+                <SocialMediaIcons />
+              </Stack>
+
+              <Typography variant="h6" component="div">
+                <NavLink to="/">HOME</NavLink>
               </Typography>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Profile
+              <Typography variant="h6" component="div">
+                <NavLink to="/posts">POST</NavLink>
               </Typography>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                About
+              <Typography variant="h6" component="div">
+                <NavLink to="/write">WRITE</NavLink>
               </Typography>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Setting
-              </Typography>
+
               {auth && (
-                <div>
+                <Stack>
                   <IconButton
-                    size="large"
+                    size="small"
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     onClick={handleMenu}
                     color="inherit"
                   >
-                    <AccountCircle />
+                    <Avatar
+                      alt="Dipak Poudel"
+                      src="/resume_pic.jpg"
+                      sx={{ width: 30, height: 30 }}
+                    />
                   </IconButton>
                   <Menu
                     id="menu-appbar"
@@ -106,16 +111,26 @@ const TopBar: React.FC = () => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      {' '}
+                      <NavLink to="/settings">SETTINGS</NavLink>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      {' '}
+                      <NavLink to="/write">WRITE</NavLink>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      {' '}
+                      <NavLink to="/write">LOGOUT</NavLink>
+                    </MenuItem>
                   </Menu>
-                </div>
+                </Stack>
               )}
             </>
-          )}
-        </Toolbar>
+          </Toolbar>
+        )}
       </NavBar>
-    </Paper>
+    </Box>
   );
 };
 

@@ -1,23 +1,25 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import TopBar from './components/header/TopBar';
-import Extra from './extra/Extra';
+import { BrowserRouter } from 'react-router-dom';
+import { Paper } from '@material-ui/core';
+import TopBar from './components/navbar/TopBar';
+import { Header, MainContainer } from './Styled.App';
+import Navigation from './navigation/Navigation';
 
 const App: React.FC = () => {
   return (
-    <Paper
-      sx={{
-        width: '100%',
-        height: '100vh',
-        bgcolor: 'background.default',
-        color: 'text.primary',
-      }}
-    >
-      <TopBar />
-      <div>
-        <Extra />
-      </div>
-    </Paper>
+    <BrowserRouter>
+      <MainContainer>
+        <Header elevation={0}>
+          <TopBar />
+        </Header>
+
+        <main>
+          <Paper elevation={0}>
+            <Navigation />
+          </Paper>
+        </main>
+      </MainContainer>
+    </BrowserRouter>
   );
 };
 
