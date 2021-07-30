@@ -5,3 +5,8 @@ export type postTypes = {
   linkText: string[];
   title: string;
 };
+
+export type ThemeContext = {
+  mode: string;
+  toggle(): void;
+};
