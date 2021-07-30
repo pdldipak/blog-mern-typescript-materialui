@@ -8,6 +8,6 @@ export const Header = styled(Paper)`
 `;
 
 export const MainContainer = styled(Container)`
-  max-width: 1536px;
+  max-width: 1550px;
   min-height: 100vh;
 `;

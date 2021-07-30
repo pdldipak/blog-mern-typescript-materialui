@@ -22,18 +22,18 @@ const Post: React.FC<Props> = ({ post }) => {
         <Grid item>
           <Box mb={2}>
             <span>
-              <Link variant="subtitle1" href="#">
-                {post.linkText}
+              <Link variant="subtitle1" underline="none" href="#">
+                {post.linkText[0]}
               </Link>
             </span>
             <span>
-              <Link variant="subtitle1" href="#">
-                {post.linkText}
+              <Link variant="subtitle1" underline="none" href="#">
+                {post.linkText[1]}
               </Link>
             </span>
           </Box>
           <Box>
-            <Link href="#" color="inherit">
+            <Link href="#" color="inherit" underline="none">
               <Typography variant="h4" gutterBottom>
                 {post.title}
               </Typography>

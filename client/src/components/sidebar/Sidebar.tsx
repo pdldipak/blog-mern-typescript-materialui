@@ -33,6 +33,7 @@ const Sidebar: React.FC = () => {
             <Link
               display="block"
               variant="body1"
+              underline="none"
               href="#"
               key={item}
               sx={{
@@ -60,6 +61,7 @@ const Sidebar: React.FC = () => {
         <Link
           display="block"
           variant="body1"
+          underline="none"
           href="#"
           key={network.name}
           sx={{ mb: 0.5 }}

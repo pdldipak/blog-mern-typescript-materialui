@@ -18,7 +18,7 @@ import { Image } from '../../utility/utilityStyled';
 const SinglePost: React.FC = () => {
   return (
     <Paper sx={{ marginTop: '62px', borderRadius: '5px', marginRight: '20px' }}>
-      <Box>
+      <Box sx={{ height: '500px' }}>
         <Image src="https://source.unsplash.com/random" alt="" />
       </Box>
 
@@ -47,7 +47,7 @@ const SinglePost: React.FC = () => {
             <Typography variant="subtitle1" color="text.secondary">
               Author:
               <Link className="link" href="/posts?username=Safak">
-                Safak
+                Dipak
               </Link>
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" gutterBottom>

@@ -52,8 +52,12 @@ const Settings: React.FC = () => {
           <Typography component="h3" variant="h6">
             Profile Picture
           </Typography>
-          <Box sx={{ height: '100px', width: '100px' }}>
-            <Image src="https://source.unsplash.com/random" alt="" />
+          <Box sx={{ height: '200px', width: '200px' }}>
+            <Image
+              src="https://source.unsplash.com/random"
+              alt=""
+              style={{ borderRadius: '50%' }}
+            />
           </Box>
           <Label htmlFor="fileInput">
             <UploadIcon />

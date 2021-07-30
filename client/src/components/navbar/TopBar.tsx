@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Stack from '@material-ui/core/Stack';
@@ -11,7 +11,6 @@ import Avatar from '@material-ui/core/Avatar';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { NavBar, TopNav } from './styled';
-import IconButton from '@material-ui/core/IconButton';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import { ColorModeContext } from '../../utility/DarkTheme';
@@ -19,15 +18,12 @@ import DrawerComponent from '../drawer/DrawerComponent';
 import { Box } from '@material-ui/core';
 import SocialMediaIcons from '../icons/SocialMediaIcons';
 import SearchAppBar from '../search/Search';
+import LockIcon from '@material-ui/icons/Lock';
 
 const TopBar: React.FC = () => {
+  const auth = true;
   const colorMode = React.useContext(ColorModeContext);
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -51,21 +47,15 @@ const TopBar: React.FC = () => {
             <Brightness4Icon />
           )}
         </IconButton>
-
         <SearchAppBar />
 
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={auth}
-                onChange={handleChange}
-                aria-label="login switch"
-              />
-            }
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup>
+        <IconButton>
+          <Badge>
+            <NavLink to="/login">
+              <LockIcon />
+            </NavLink>
+          </Badge>
+        </IconButton>
       </TopNav>
       <NavBar position="static" elevation={0}>
         {isMatch ? (
@@ -81,16 +71,13 @@ const TopBar: React.FC = () => {
               </Stack>
 
               <Typography variant="h6" component="div">
-                Home
+                <NavLink to="/">HOME</NavLink>
               </Typography>
               <Typography variant="h6" component="div">
-                About
+                <NavLink to="/posts">POST</NavLink>
               </Typography>
               <Typography variant="h6" component="div">
-                Write
-              </Typography>
-              <Typography variant="h6" component="div">
-                Contact
+                <NavLink to="/write">WRITE</NavLink>
               </Typography>
 
               {auth && (
@@ -124,8 +111,18 @@ const TopBar: React.FC = () => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      {' '}
+                      <NavLink to="/settings">SETTINGS</NavLink>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      {' '}
+                      <NavLink to="/write">WRITE</NavLink>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      {' '}
+                      <NavLink to="/write">LOGOUT</NavLink>
+                    </MenuItem>
                   </Menu>
                 </Stack>
               )}

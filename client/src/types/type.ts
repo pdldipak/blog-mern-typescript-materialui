@@ -2,6 +2,6 @@ export type postTypes = {
   description: string;
   image: string;
   imageText: string;
-  linkText: string;
+  linkText: string[];
   title: string;
 };

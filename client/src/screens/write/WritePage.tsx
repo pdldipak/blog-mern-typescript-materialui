@@ -21,7 +21,7 @@ const WritePage: React.FC = () => {
           <input id="fileInput" type="file" style={{ display: 'none' }} />
 
           <TextInput
-            label="Note Title"
+            label="Blog Title"
             color="primary"
             fullWidth
             required
