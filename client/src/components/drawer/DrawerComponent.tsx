@@ -22,10 +22,11 @@ const DrawerComponent: React.FC<Props> = () => {
       >
         <List
           sx={{
-            width: '250px',
+            maxWidth: '250px',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
+            position: 'relative',
           }}
         >
           <ListItem divider button>
