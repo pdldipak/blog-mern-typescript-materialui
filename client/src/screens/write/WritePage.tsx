@@ -10,7 +10,7 @@ import { Image } from '../../utility/utilityStyled';
 const WritePage: React.FC = () => {
   return (
     <WriteStack sx={{ marginTop: '32px' }}>
-      <Stack sx={{ height: '500px', margin: '0, auto' }}>
+      <Stack sx={{ width: '100%', height: '500px', margin: '0, auto' }}>
         <Image src="https://source.unsplash.com/random" alt="" />
       </Stack>
       <Form noValidate autoComplete="off">
@@ -41,12 +41,12 @@ const WritePage: React.FC = () => {
           />
         </Box>
         <Button
-          size="large"
+          size="medium"
           type="submit"
           color="success"
           variant="contained"
           endIcon={<SaveIcon />}
-          sx={{ width: '220px', alignSelf: 'center' }}
+          sx={{ width: '200px', alignSelf: 'center' }}
         >
           Publish
         </Button>
