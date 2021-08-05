@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const path = require('path');
 // const multer = require('multer');
 
 dotenv.config();
@@ -21,6 +22,9 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+
+// static path to public
+app.use('/images', express.static(path.join(__dirname, '/images')));
 
 // mongoose
 

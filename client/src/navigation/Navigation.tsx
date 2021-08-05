@@ -18,7 +18,7 @@ const Navigation: React.FC = () => {
           <HomePage />
         </Route>
         <Route path="/post/:postId">
-          <SingleBlogPage />
+          {currentUser ? <SingleBlogPage /> : <SignIn />}
         </Route>
         <Route path="/register">
           {currentUser ? <HomePage /> : <Register />}

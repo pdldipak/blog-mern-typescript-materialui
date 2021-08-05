@@ -16,4 +16,5 @@ export const TopNav = styled(Toolbar)({
   borderColor: 'divider',
   display: 'flex',
   justifyContent: 'space-between',
+  padding: 0,
 });

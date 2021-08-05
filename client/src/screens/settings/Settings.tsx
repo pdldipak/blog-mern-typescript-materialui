@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FileUploadIcon from '@material-ui/icons/FileUpload';
@@ -9,8 +9,11 @@ import Grid from '@material-ui/core/Grid';
 import { styled } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Image } from '../../utility/utilityStyled';
+import { UserContext } from '../../context/authContext/AuthContext';
 
 const Settings: React.FC = () => {
+  const { user } = useContext<any>(UserContext);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,7 +31,7 @@ const Settings: React.FC = () => {
         sm={12}
         md={7}
         sx={{
-          backgroundImage: 'url(https://source.unsplash.com/random)',
+          backgroundImage: `url(${user.profilePic})`,
           backgroundRepeat: 'no-repeat',
           backgroundColor: theme =>
             theme.palette.mode === 'light'
@@ -53,7 +56,7 @@ const Settings: React.FC = () => {
           </Typography>
           <Box sx={{ height: '200px', width: '200px' }}>
             <Image
-              src="https://source.unsplash.com/random"
+              src={user.profilePic}
               alt=""
               style={{ borderRadius: '50%' }}
             />
