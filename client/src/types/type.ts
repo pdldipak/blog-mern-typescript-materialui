@@ -1,9 +1,12 @@
 export type postTypes = {
-  description: string;
-  image: string;
+  desc: string;
+  photo: string;
   imageText: string;
-  linkText: string[];
+  categories: string[];
   title: string;
+  createdAt: string | number | Date;
+  _id: string;
+  username: string;
 };
 
 export type ThemeContext = {
