@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -6,16 +7,26 @@ import Box from '@material-ui/core/Box';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/core/Alert';
 
 const Register: React.FC = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    setError(false);
+    try {
+      const res = await axios.post('/blog/auth/register', {
+        username,
+        email,
+        password,
+      });
+      res.data && window.location.replace('/login');
+    } catch (err) {
+      setError(true);
+    }
   };
 
   return (
@@ -39,12 +50,13 @@ const Register: React.FC = () => {
             margin="normal"
             required
             fullWidth
-            id="
-              username"
+            id="username"
             label="Username"
             name="username"
             autoComplete="email"
             autoFocus
+            value={username}
+            onChange={e => setUsername(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -55,6 +67,8 @@ const Register: React.FC = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -65,6 +79,8 @@ const Register: React.FC = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
           <Button
             type="submit"
@@ -75,6 +91,11 @@ const Register: React.FC = () => {
             Register
           </Button>
         </Box>
+        {error && (
+          <Alert variant="filled" severity="error">
+            Something went wrong — check it out!
+          </Alert>
+        )}
       </Box>
     </Container>
   );
