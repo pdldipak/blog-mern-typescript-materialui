@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Stack from '@material-ui/core/Stack';
 import Avatar from '@material-ui/core/Avatar';
+import { UserContext } from '../context/authContext/AuthContext';
 
 const AuthService: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
+  const { user, onLogout } = useContext<any>(UserContext);
+  console.log('user', user);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -27,11 +30,13 @@ const AuthService: React.FC = () => {
         onClick={handleMenu}
         color="inherit"
       >
-        <Avatar
-          alt="Dipak Poudel"
-          src="/resume_pic.jpg"
-          sx={{ width: 30, height: 30 }}
-        />
+        {user && (
+          <Avatar
+            alt="Dipak Poudel"
+            src={user.profilePic}
+            sx={{ width: 30, height: 30 }}
+          />
+        )}
       </IconButton>
       <Menu
         id="menu-appbar"
@@ -58,7 +63,9 @@ const AuthService: React.FC = () => {
         </MenuItem>
         <MenuItem onClick={handleClose}>
           {' '}
-          <NavLink to="/write">LOGOUT</NavLink>
+          <NavLink to="/login" onClick={() => onLogout()}>
+            LOGOUT
+          </NavLink>
         </MenuItem>
       </Menu>
     </Stack>
