@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -12,16 +12,23 @@ import Paper from '@material-ui/core/Paper';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/core/Alert';
+import { UserContext } from '../../context/authContext/AuthContext';
+
+// type Props = {
+//   user: any;
+//   loading?: boolean;
+//   error?: boolean;
+//   onLogin: (username: string, password: string) => Promise<void>;
+// };
 
 const SignIn: React.FC = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string | number>('');
+  const { onLogin, isLoading, error } = useContext<any>(UserContext);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    onLogin(username, password);
   };
 
   return (
@@ -47,11 +54,13 @@ const SignIn: React.FC = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
+            value={username}
+            onChange={e => setUsername(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -62,6 +71,8 @@ const SignIn: React.FC = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -72,6 +83,7 @@ const SignIn: React.FC = () => {
             fullWidth
             variant="contained"
             sx={{ my: 3, py: 2 }}
+            disabled={isLoading}
           >
             Sign In
           </Button>
@@ -90,6 +102,11 @@ const SignIn: React.FC = () => {
             </Grid>
           </Grid>
         </Box>
+        {error && (
+          <Alert variant="filled" severity="error">
+            Please check username or password!
+          </Alert>
+        )}
       </Paper>
     </Container>
   );
