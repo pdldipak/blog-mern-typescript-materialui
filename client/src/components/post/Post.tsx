@@ -2,7 +2,7 @@ import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import { styled } from '@material-ui/core/styles';
 import { postTypes } from '../../types/type';
@@ -13,36 +13,34 @@ type Props = {
 };
 
 const Post: React.FC<Props> = ({ post }) => {
+  const PublicFolder = 'http://localhost:3001/images/';
   return (
     <Paper sx={{ marginTop: '62px', borderRadius: '5px', marginRight: '20px' }}>
-      <Box sx={{ height: '400px' }}>
-        <Image className="postImg" src={post.image} alt="" />
+      <Box height={{ xs: '400px', md: '600px' }}>
+        <Image className="postImg" src={PublicFolder + post.photo} alt="" />
       </Box>
       <Grid container p={2}>
         <Grid item>
-          <Box mb={2}>
-            <span>
-              <Link variant="subtitle1" underline="none" href="#">
-                {post.linkText[0]}
+          <Box sx={{ display: 'flex', marginBottom: '16px' }}>
+            {post.categories.map(category => (
+              <Link key={category} to={`post/${post._id}`}>
+                <Typography variant="subtitle2" component="div" mr={2}>
+                  {category}
+                </Typography>
               </Link>
-            </span>
-            <span>
-              <Link variant="subtitle1" underline="none" href="#">
-                {post.linkText[1]}
-              </Link>
-            </span>
+            ))}
           </Box>
           <Box>
-            <Link href="#" color="inherit" underline="none">
+            <Link to={`post/${post._id}`}>
               <Typography variant="h4" gutterBottom>
                 {post.title}
               </Typography>
             </Link>
 
             <Typography variant="subtitle2" color="text.secondary">
-              1 hour ago
+              {new Date(post.createdAt).toDateString()}
             </Typography>
-            <Paragraph>{post.description}</Paragraph>
+            <Paragraph>{post.desc}</Paragraph>
           </Box>
         </Grid>
       </Grid>

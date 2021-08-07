@@ -20,4 +20,4 @@ const SingleBlogPage: React.FC = () => {
   );
 };
 
-export default SingleBlogPage;
+export default React.memo(SingleBlogPage);

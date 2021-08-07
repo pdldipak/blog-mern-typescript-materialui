@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,14 +13,17 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import { ColorModeContext } from '../../utility/DarkTheme';
 import DrawerComponent from '../drawer/DrawerComponent';
-import { Box } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import SocialMediaIcons from '../icons/SocialMediaIcons';
 import SearchAppBar from '../search/Search';
-import LockIcon from '@material-ui/icons/Lock';
+import LoginIcon from '@material-ui/icons/Login';
+import LogoutIcon from '@material-ui/icons/Logout';
 import AuthService from '../../utility/AuthService';
+import { UserContext } from '../../context/authContext/AuthContext';
 
 const TopBar: React.FC = () => {
-  const auth = true;
+  const { user, onLogout } = useContext<any>(UserContext);
+  const auth = user;
   const colorMode = React.useContext(ColorModeContext);
 
   //Breakpoints
@@ -41,9 +44,30 @@ const TopBar: React.FC = () => {
 
         <IconButton>
           <Badge>
-            <NavLink to="/login">
-              <LockIcon />
-            </NavLink>
+            {!user ? (
+              <NavLink to="/login">
+                <Button
+                  sx={{
+                    bgcolor: '#00acc1',
+                  }}
+                  variant="contained"
+                  endIcon={<LoginIcon />}
+                >
+                  LogIn
+                </Button>
+              </NavLink>
+            ) : (
+              <Button
+                sx={{
+                  bgcolor: '#7b1fa2',
+                }}
+                variant="contained"
+                endIcon={<LogoutIcon />}
+                onClick={() => onLogout()}
+              >
+                LogOut
+              </Button>
+            )}
           </Badge>
         </IconButton>
       </TopNav>
@@ -61,13 +85,19 @@ const TopBar: React.FC = () => {
               </Stack>
 
               <Typography variant="h6" component="div">
-                <NavLink to="/">HOME</NavLink>
+                <NavLink to="/posts" activeClassName="active-link">
+                  HOME
+                </NavLink>
               </Typography>
               <Typography variant="h6" component="div">
-                <NavLink to="/posts">POST</NavLink>
+                <NavLink to="/post/:postId" activeClassName="active-link">
+                  POST
+                </NavLink>
               </Typography>
               <Typography variant="h6" component="div">
-                <NavLink to="/write">WRITE</NavLink>
+                <NavLink to="/write" activeClassName="active-link">
+                  WRITE
+                </NavLink>
               </Typography>
               <Typography variant="h6" component="div">
                 <Link

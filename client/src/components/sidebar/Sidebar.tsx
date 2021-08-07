@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
-import Link from '@material-ui/core/Link';
+import { Link as Link1 } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { Image } from '../../utility/utilityStyled';
+import { CategoryContext } from '../../context/categoriesContext/CategoriesContext';
+
+type nameType = {
+  name: string;
+  _id: string;
+};
+
+type Props = {
+  categories: nameType[];
+};
 
 const Sidebar: React.FC = () => {
+  const { categories } = useContext<Props>(CategoryContext);
+  
   return (
-    <Paper elevation={0} sx={{ marginTop: '62px' }}>
+    <Paper
+      elevation={0}
+      sx={{ top: '150px', marginTop: '62px', position: 'sticky' }}
+    >
       <Typography variant="h6" align="center" gutterBottom>
         <hr />
         ABOUT ME
@@ -28,24 +44,20 @@ const Sidebar: React.FC = () => {
         <hr />
       </Typography>
       <Stack>
-        {['Life', 'Education', 'Professional', 'Travelling', 'Playing'].map(
-          item => (
-            <Link
-              display="block"
-              variant="body1"
-              underline="none"
-              href="#"
-              key={item}
-              sx={{
-                display: 'inline-block',
-                marginTop: '15px',
-                cursor: 'pointer',
-              }}
-            >
-              {item}
-            </Link>
-          ),
-        )}
+        {categories?.map(category => (
+          <Typography
+            display="block"
+            variant="body1"
+            key={category._id}
+            sx={{
+              display: 'inline-block',
+              marginTop: '15px',
+              cursor: 'pointer',
+            }}
+          >
+            <Link to={`/?category=${category.name}`}> {category.name}</Link>
+          </Typography>
+        ))}
       </Stack>
       <Typography variant="h6" sx={{ mt: 3 }}>
         <hr />
@@ -58,7 +70,7 @@ const Sidebar: React.FC = () => {
         { name: 'Twitter', icon: TwitterIcon },
         { name: 'Facebook', icon: FacebookIcon },
       ].map(network => (
-        <Link
+        <Link1
           display="block"
           variant="body1"
           underline="none"
@@ -70,7 +82,7 @@ const Sidebar: React.FC = () => {
             <network.icon />
             <span>{network.name}</span>
           </Stack>
-        </Link>
+        </Link1>
       ))}
     </Paper>
   );

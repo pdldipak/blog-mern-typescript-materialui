@@ -37,7 +37,7 @@ const DrawerComponent: React.FC<Props> = () => {
           </ListItem>
           <ListItem divider button>
             <ListItemText>
-              <NavLink to="/posts">POST</NavLink>
+              <NavLink to="/post">POST</NavLink>
             </ListItemText>
           </ListItem>
           <ListItem divider button>
