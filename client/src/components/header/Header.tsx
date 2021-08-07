@@ -1,13 +1,16 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { Typography, Box, Stack } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import image from '../../assets/images/header01.jpeg';
+import { UserContext } from '../../context/authContext/AuthContext';
 
 const Header: React.FC = () => {
+  const { user } = useContext<any>(UserContext);
   return (
     <Box sx={{ height: '600px' }}>
       <BlogImage>
-        <Text>Dipak</Text>
+        {user ? <Text>{user.username}</Text> : <Text>Dipak</Text>}
+
         <Text>Blog</Text>
       </BlogImage>
     </Box>

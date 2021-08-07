@@ -16,3 +16,11 @@ a {
 /* a:hover {
   color: inherit;
 } */
+
+.active-link {
+  text-decoration: underline solid 5px #ff8000;
+}
+
+a:hover {
+  text-decoration: underline #ffa64d;
+}
