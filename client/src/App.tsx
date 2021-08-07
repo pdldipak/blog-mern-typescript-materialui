@@ -7,6 +7,7 @@ import Navigation from './navigation/Navigation';
 import { BlogsContextProvider } from './context/blogsContext/BlogContext';
 import { CategoryContextProvider } from './context/categoriesContext/CategoriesContext';
 import { UserContextProvider } from './context/authContext/AuthContext';
+import Footer from './components/footer/Footer';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,11 @@ const App: React.FC = () => {
                   <Navigation />
                 </Paper>
               </main>
+              <footer>
+                <Paper elevation={0}>
+                  <Footer />
+                </Paper>
+              </footer>
             </MainContainer>
           </CategoryContextProvider>
         </BlogsContextProvider>
