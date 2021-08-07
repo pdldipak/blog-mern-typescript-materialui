@@ -6,6 +6,11 @@ type Props = {
   error: boolean;
   onLogin?: (username: string, password: string) => Promise<void>;
   onLogout?: () => void;
+  onRegister?: (
+    username: string,
+    email: string,
+    password: string,
+  ) => Promise<void>;
 };
 
 const initialState = {
@@ -22,7 +27,31 @@ export const UserContextProvider: React.FC<React.ReactNode> = ({
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  console.log(user);
+
+
+  //register
+  const onRegister = async (
+    username: string,
+    email: string,
+    password: string,
+  ) => {
+    setLoading(true);
+    setError(false);
+    try {
+      await axios
+        .post('/blog/auth/register', {
+          username,
+          email,
+          password,
+        })
+        .then(res => setUser(res.data));
+      window.location.replace('/login');
+    } catch (err) {
+      setError(true);
+    }
+  };
+
+  //login
   const onLogin = async (username: string, password: string) => {
     setLoading(true);
     setError(false);
@@ -55,7 +84,9 @@ export const UserContextProvider: React.FC<React.ReactNode> = ({
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ user, loading, error, onLogin, onLogout }}>
+    <UserContext.Provider
+      value={{ user, loading, error, onLogin, onLogout, onRegister }}
+    >
       {children}
     </UserContext.Provider>
   );

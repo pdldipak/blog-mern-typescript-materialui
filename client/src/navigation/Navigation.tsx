@@ -14,7 +14,7 @@ const Navigation: React.FC = () => {
   return (
     <>
       <Switch>
-        <Route path="/" exact>
+        <Route path="/posts" exact>
           <HomePage />
         </Route>
         <Route path="/post/:postId">

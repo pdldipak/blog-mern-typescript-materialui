@@ -43,21 +43,6 @@ app.get('/blog', (req, res) => {
   res.json({ message: 'MERN blog post' });
 });
 
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'images');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, 'tiger1.jpg');
-//   },
-// });
-
-// // eslint-disable-next-line object-shorthand
-// const upload = multer({ storage: storage });
-// app.post('/blog/upload', upload.single('file'), (req, res) => {
-//   res.status(200).json('File has been uploaded');
-// });
-
 app.use('/blog/auth', authRoute);
 app.use('/blog/users', userRouter);
 app.use('/blog/posts', postRouter);

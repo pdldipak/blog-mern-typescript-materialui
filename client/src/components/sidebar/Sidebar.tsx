@@ -21,7 +21,7 @@ type Props = {
 
 const Sidebar: React.FC = () => {
   const { categories } = useContext<Props>(CategoryContext);
-  console.log('categories', categories);
+  
   return (
     <Paper
       elevation={0}

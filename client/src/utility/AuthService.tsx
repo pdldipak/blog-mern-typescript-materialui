@@ -11,7 +11,7 @@ const AuthService: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const { user, onLogout } = useContext<any>(UserContext);
-  console.log('user', user);
+ 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };

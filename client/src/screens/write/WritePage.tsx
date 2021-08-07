@@ -46,7 +46,6 @@ const WritePage: React.FC = () => {
     try {
       const res = await axios.post('/blog/posts', newPost);
       res.data && window.location.replace('/post/' + res.data._id);
-      console.log('res', res);
     } catch (err) {
       console.log(err);
     }
@@ -55,7 +54,7 @@ const WritePage: React.FC = () => {
   return (
     <WriteStack sx={{ marginTop: '32px' }}>
       {file && (
-        <Stack sx={{ width: '100%', height: '500px', margin: '0, auto' }}>
+        <Stack height={{ xs: '400px', md: '600px' }}>
           <Image src={URL.createObjectURL(file)} alt="" />
         </Stack>
       )}
@@ -102,7 +101,13 @@ const WritePage: React.FC = () => {
           color="success"
           variant="contained"
           endIcon={<SaveIcon />}
-          sx={{ width: '200px', alignSelf: 'center' }}
+          sx={{
+            bgcolor: '#00acc1',
+            my: 3,
+            py: 2,
+            alignSelf: 'center',
+            width: '220px',
+          }}
         >
           Publish
         </Button>

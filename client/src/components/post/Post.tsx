@@ -16,7 +16,7 @@ const Post: React.FC<Props> = ({ post }) => {
   const PublicFolder = 'http://localhost:3001/images/';
   return (
     <Paper sx={{ marginTop: '62px', borderRadius: '5px', marginRight: '20px' }}>
-      <Box sx={{ height: '400px' }}>
+      <Box height={{ xs: '400px', md: '600px' }}>
         <Image className="postImg" src={PublicFolder + post.photo} alt="" />
       </Box>
       <Grid container p={2}>

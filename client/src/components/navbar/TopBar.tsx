@@ -47,7 +47,9 @@ const TopBar: React.FC = () => {
             {!user ? (
               <NavLink to="/login">
                 <Button
-                  color="success"
+                  sx={{
+                    bgcolor: '#00acc1',
+                  }}
                   variant="contained"
                   endIcon={<LoginIcon />}
                 >
@@ -56,7 +58,9 @@ const TopBar: React.FC = () => {
               </NavLink>
             ) : (
               <Button
-                color="error"
+                sx={{
+                  bgcolor: '#7b1fa2',
+                }}
                 variant="contained"
                 endIcon={<LogoutIcon />}
                 onClick={() => onLogout()}
@@ -81,13 +85,19 @@ const TopBar: React.FC = () => {
               </Stack>
 
               <Typography variant="h6" component="div">
-                <NavLink to="/">HOME</NavLink>
+                <NavLink to="/posts" activeClassName="active-link">
+                  HOME
+                </NavLink>
               </Typography>
               <Typography variant="h6" component="div">
-                <NavLink to="/post/:postId">POST</NavLink>
+                <NavLink to="/post/:postId" activeClassName="active-link">
+                  POST
+                </NavLink>
               </Typography>
               <Typography variant="h6" component="div">
-                <NavLink to="/write">WRITE</NavLink>
+                <NavLink to="/write" activeClassName="active-link">
+                  WRITE
+                </NavLink>
               </Typography>
               <Typography variant="h6" component="div">
                 <Link
