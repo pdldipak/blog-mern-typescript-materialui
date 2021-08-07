@@ -18,7 +18,7 @@ a {
 } */
 
 .active-link {
-  text-decoration: underline solid 5px #ff8000;
+  text-decoration: underline solid #ff8000;
 }
 
 a:hover {
