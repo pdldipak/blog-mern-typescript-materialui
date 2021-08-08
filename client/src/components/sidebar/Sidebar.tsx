@@ -9,6 +9,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { Image } from '../../utility/utilityStyled';
 import { CategoryContext } from '../../context/categoriesContext/CategoriesContext';
+import { UserContext } from '../../context/authContext/AuthContext';
 
 type nameType = {
   name: string;
@@ -20,8 +21,9 @@ type Props = {
 };
 
 const Sidebar: React.FC = () => {
+  const { user } = useContext<any>(UserContext);
   const { categories } = useContext<Props>(CategoryContext);
-  
+  const PublicFolder = 'http://localhost:3001/images/';
   return (
     <Paper
       elevation={0}
@@ -32,7 +34,14 @@ const Sidebar: React.FC = () => {
         ABOUT ME
         <hr />
       </Typography>
-      <Image src="/resume_pic.jpg" alt="" />
+      <Image
+        src={
+          user
+            ? PublicFolder + user.profilePic
+            : 'https://images.unsplash.com/photo-1589802829985-817e51171b92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80'
+        }
+        alt=""
+      />
       <Typography>
         Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit amet
         ex esse.Sunt eu ut nostrud id quis proident.

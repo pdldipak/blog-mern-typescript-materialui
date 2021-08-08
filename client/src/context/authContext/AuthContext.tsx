@@ -28,7 +28,6 @@ export const UserContextProvider: React.FC<React.ReactNode> = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
-
   //register
   const onRegister = async (
     username: string,

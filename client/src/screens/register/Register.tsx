@@ -61,7 +61,6 @@ const Register: React.FC = () => {
             label="Username"
             type="text"
             name="username"
-            autoComplete="email"
             autoFocus
             error={!!username.error}
             helperText={username.error}
@@ -78,6 +77,8 @@ const Register: React.FC = () => {
             type="email"
             autoComplete="email"
             autoFocus
+            error={!!email.error}
+            helperText={email.error}
             value={email.value}
             onChange={e => setEmail({ value: e.target.value, error: '' })}
           />

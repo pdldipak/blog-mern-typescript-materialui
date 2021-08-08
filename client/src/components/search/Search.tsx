@@ -14,10 +14,9 @@ type Props = {
 
 const SearchAppBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  console.log('searchTerm', searchTerm);
   const { categories } = useContext<Props>(CategoryContext);
 
-  const matchCategories = (event: any) => {
+  const matchCategories = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     categories.filter(category => {
       if (searchTerm == '') {
@@ -28,6 +27,7 @@ const SearchAppBar: React.FC = () => {
         window.location.replace(`/?category=${category.name}`);
       }
     });
+    setSearchTerm('');
   };
   return (
     <Search onSubmit={matchCategories}>

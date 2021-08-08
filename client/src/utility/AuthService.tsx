@@ -9,9 +9,9 @@ import { UserContext } from '../context/authContext/AuthContext';
 
 const AuthService: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
   const { user, onLogout } = useContext<any>(UserContext);
- 
+  const PublicFolder = 'http://localhost:3001/images/';
+
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -33,7 +33,7 @@ const AuthService: React.FC = () => {
         {user && (
           <Avatar
             alt="Dipak Poudel"
-            src={user.profilePic}
+            src={PublicFolder + user.profilePic}
             sx={{ width: 30, height: 30 }}
           />
         )}
