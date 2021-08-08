@@ -24,7 +24,7 @@ const Settings: React.FC = () => {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [file, setFile] = useState<File>();
-  const { user } = useContext<any>(UserContext);
+  const { user, setUser } = useContext<any>(UserContext);
   const PublicFolder = 'http://localhost:3001/images/';
 
   const handleImageChange = function (
@@ -75,6 +75,7 @@ const Settings: React.FC = () => {
     try {
       const res = await axios.put('/blog/users/' + user._id, updatedUser);
       toast.success('updated sucessfully');
+      setUser(res.data);
       res.data && window.location.reload();
     } catch (err) {
       console.log(err);

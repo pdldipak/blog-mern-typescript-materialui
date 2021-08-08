@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 type Props = {
   user: string | null;
+  setUser?: any;
   loading: boolean;
   error: boolean;
   onLogin?: (username: string, password: string) => Promise<void>;
@@ -24,7 +25,7 @@ export const UserContext = createContext<Props>(initialState);
 export const UserContextProvider: React.FC<React.ReactNode> = ({
   children,
 }) => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
@@ -84,7 +85,7 @@ export const UserContextProvider: React.FC<React.ReactNode> = ({
 
   return (
     <UserContext.Provider
-      value={{ user, loading, error, onLogin, onLogout, onRegister }}
+      value={{ user, loading, error, onLogin, onLogout, onRegister, setUser }}
     >
       {children}
     </UserContext.Provider>
