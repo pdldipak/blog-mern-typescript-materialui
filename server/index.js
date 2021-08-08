@@ -31,8 +31,8 @@ mongoose
   .connect(process.env.MONGODB_URL || process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(console.log('Connected to DB'))
   // eslint-disable-next-line arrow-parens
