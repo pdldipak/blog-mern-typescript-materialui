@@ -85,7 +85,7 @@ const TopBar: React.FC = () => {
               </Stack>
 
               <Typography variant="h6" component="div">
-                <NavLink to="/posts" activeClassName="active-link">
+                <NavLink exact={true} to="/" activeClassName="active-link">
                   HOME
                 </NavLink>
               </Typography>
