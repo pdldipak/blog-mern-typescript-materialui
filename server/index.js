@@ -1,7 +1,6 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable arrow-parens */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable arrow-parens */
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -44,7 +43,7 @@ app.use('/blog/categories', categoryRoute);
 app.use('/blog/upload', uploadRouter);
 
 // to render static file inside build folder
-const __dirname = path.resolve();
+
 app.use('/images', express.static(path.join(__dirname, '/images')));
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.get('*', (req, res) =>
