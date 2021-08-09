@@ -27,7 +27,6 @@ const Settings: React.FC = () => {
   const { user, setUser, onLogout } = useContext<any>(UserContext);
   const PublicFolder = 'http://localhost:3001/images/';
 
-  console.log('user', user);
   const handleImageChange = function (
     event: React.ChangeEvent<HTMLInputElement>,
   ) {
@@ -88,7 +87,7 @@ const Settings: React.FC = () => {
       const res = await axios.delete(`/blog/users/${user._id}`, {
         data: { userId: user._id, username: user.username },
       });
-      setUser(res.data);
+      setUser(res);
       onLogout();
       window.location.replace('/');
     } catch (err) {

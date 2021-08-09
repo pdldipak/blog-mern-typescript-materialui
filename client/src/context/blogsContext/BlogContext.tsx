@@ -19,7 +19,6 @@ export const BlogsContextProvider: React.FC<React.ReactNode> = ({
   const { search } = useLocation();
 
   const [posts, setPosts] = useState<postTypes[]>([]);
-  console.log(posts);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get('/blog/posts' + search);

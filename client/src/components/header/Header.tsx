@@ -8,11 +8,11 @@ const Header: React.FC = () => {
   const { user } = useContext<any>(UserContext);
   return (
     <Box sx={{ height: '600px' }}>
-      <BlogImage>
+      <BlogText>
         {user ? <Text>{user.username}</Text> : <Text>Dipak</Text>}
 
         <Text>Blog</Text>
-      </BlogImage>
+      </BlogText>
     </Box>
   );
 };
@@ -27,9 +27,10 @@ const Text = styled(Typography)(({ theme }) => ({
   fontSize: '100px',
   fontFamily: 'Lora',
   fontStyle: 'italic',
+  overflowWrap: 'break-word',
 }));
 
-const BlogImage = styled(Stack)({
+const BlogText = styled(Stack)({
   mb: 4,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
@@ -41,4 +42,5 @@ const BlogImage = styled(Stack)({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+  overflow: 'hidden',
 });

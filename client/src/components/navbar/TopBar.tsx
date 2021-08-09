@@ -42,7 +42,7 @@ const TopBar: React.FC = () => {
         </IconButton>
         <SearchAppBar />
 
-        <IconButton>
+        <div>
           <Badge>
             {!user ? (
               <NavLink to="/login">
@@ -69,7 +69,7 @@ const TopBar: React.FC = () => {
               </Button>
             )}
           </Badge>
-        </IconButton>
+        </div>
       </TopNav>
       <NavBar position="static" elevation={0}>
         {isMatch ? (

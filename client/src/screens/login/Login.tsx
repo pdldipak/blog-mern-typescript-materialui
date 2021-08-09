@@ -16,12 +16,7 @@ import Alert from '@material-ui/core/Alert';
 import { UserContext } from '../../context/authContext/AuthContext';
 import { nameValidator, passwordValidator } from '../../utility/AuthValidator';
 
-// type Props = {
-//   user: any;
-//   loading?: boolean;
-//   error?: boolean;
-//   onLogin: (username: string, password: string) => Promise<void>;
-// };
+
 
 const SignIn: React.FC = () => {
   const [username, setUsername] = useState({ value: '', error: '' });
