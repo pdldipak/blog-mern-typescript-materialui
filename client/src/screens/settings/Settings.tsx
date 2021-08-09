@@ -24,9 +24,10 @@ const Settings: React.FC = () => {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [file, setFile] = useState<File>();
-  const { user, setUser } = useContext<any>(UserContext);
+  const { user, setUser, onLogout } = useContext<any>(UserContext);
   const PublicFolder = 'http://localhost:3001/images/';
 
+  console.log('user', user);
   const handleImageChange = function (
     event: React.ChangeEvent<HTMLInputElement>,
   ) {
@@ -73,7 +74,7 @@ const Settings: React.FC = () => {
     }
 
     try {
-      const res = await axios.put('/blog/users/' + user._id, updatedUser);
+      const res = await axios.put(`/blog/users/${user._id}`, updatedUser);
       toast.success('updated sucessfully');
       setUser(res.data);
       res.data && window.location.reload();
@@ -81,6 +82,20 @@ const Settings: React.FC = () => {
       console.log(err);
     }
   };
+
+  const handleDeleteUser = async () => {
+    try {
+      const res = await axios.delete(`/blog/users/${user._id}`, {
+        data: { userId: user._id, username: user.username },
+      });
+      setUser(res.data);
+      onLogout();
+      window.location.replace('/');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <ToastContainer />
@@ -209,6 +224,7 @@ const Settings: React.FC = () => {
               color="error"
               startIcon={<DeleteIcon />}
               sx={{ my: 5, py: 2 }}
+              onClick={handleDeleteUser}
             >
               Delete Account
             </Button>
