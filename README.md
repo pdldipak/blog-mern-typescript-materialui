@@ -1,4 +1,4 @@
-# blog-mern-typescript-materialui 
+# Project: Blog-MERN-Stack
 This blog site built with MERN stack,  typescript on the client side and used material Ui. 
 
  # Techs_key: 
