@@ -1,6 +1,20 @@
 # blog-mern-typescript-materialui 
 This blog site built with MERN stack,  typescript on the client side and used material Ui. 
 
+ # Techs_key: 
+ **[
+      'React',
+      'Typescript',
+      'MongoDB',
+      'NodeJs',
+      'Express',
+      'React Context',
+      'MaterialUi',
+      'Rest API',
+      'Js ES6',
+      'JSX',
+    ]**
+
 # Ui Part 
 
 **UI Part 1** 
